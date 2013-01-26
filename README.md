@@ -106,3 +106,32 @@ console.log(assure.end())
 //     is: -666,
 //     param: 'positive' } ]
 ```
+
+
+## Validators
+
+```
+.is(type)            typeof val === type (extra type 'array')
+.gt(number)          val > number
+.lt(number)          val < number
+.max(number)         val <= number
+.min(number)         val >= number
+.equals(other)       val === other
+.notEquals(other)    val !== other
+.required()          val !== undefined && val !== null
+.oneOf(array)        val exists in array
+.isEmail()           val has an email format
+.isInt()             val is an integral number
+.matches(regex)      val matches regex
+.len(min, max)       val.length between min and max
+.len(max)            val.length at most max
+.consistsOf(index)   val contains only stuff found in index
+```
+
+## Sanitizers
+
+```
+.toInt()    number & string to integers
+.toFloar()  string to float
+.trim()     trims whitespace from left & right
+```

@@ -5,11 +5,11 @@ var validators = require('../').validators
 describe('assurance validators', function () {
   describe('isNumber', function () {
     it('should work for numbers', function () {
-      should.not.exist(validators.isNumber(5))
+      should.not.exist(validators.is(5, 'number'))
     })
 
     it('should throw elseways', function () {
-      var err = validators.isNumber('ff')
+      var err = validators.is('ff', 'number')
 
       err.type.should.equal('InvalidType')
       err.expected.should.equal('number')

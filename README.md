@@ -3,7 +3,7 @@
 
 _Assurance_ is a validation library, which:
 
-  * Provides a **clean** & **easy** API
+  * Provides a **clean** & **pretty** API
   * Returns meaningful error **objects**, not error messages
   * **Accumulates** errors, doesn't bail straight away
   * Loves nested objects
@@ -278,6 +278,10 @@ assurance({ name: 'dan' }).check('name').is('string').custom(function (name, err
     .toFloar()  string to float
     .trim()     trims whitespace from left & right
 
+## Tests
+
+    npm test
+    make test
 
 [single assurance instance]: https://github.com/danmilon/assurance/tree/master/lib/singleton.js
 [Assurance object]: https://github.com/danmilon/assurance/blob/master/lib/Assurance.js

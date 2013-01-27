@@ -32,14 +32,14 @@ describe('Assurance', function () {
 
   describe('_constructor_', function () {
     it('should return an Assurance instance', function () {
-      assurance(person).should.be.instanceOf(assurance)
+      assurance(person).should.be.instanceOf(assurance.Assurance)
     })
 
     it('onlyFields should be optional', function () {
       should.not.exist(assurance(person).only)
     })
 
-    it('onlyFields should be optional', function () {
+    it('alias should be optional', function () {
       should.not.exist(assurance(person).alias)
     })
 
@@ -155,6 +155,22 @@ describe('Assurance', function () {
 
   describe('#nest', function () {
     it('should nest validation', testNest)
+
+    it('should nest in arrays', function () {
+      var assure = assurance({
+        bands: ['cranberries', 'the doors', 666]
+      })
+
+      assure.me('bands').nest(function (band) {
+        band.is('string')
+      })
+
+      var errors = assure.end()
+
+      errors.should.have.length(1)
+      errors[0].type.should.equal('InvalidType')
+      errors[0].param.should.equal('bands[2]')
+    })
 
     it('should nest in complex ways', function () {
       var assure = assurance({

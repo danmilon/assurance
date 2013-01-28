@@ -246,7 +246,60 @@ describe('Assurance', function () {
       assure.hasErrors().should.be.false;
       (typeof o.missing).should.equal('string')
     })
-  })  
+  })
+
+  describe('#extend', function () {
+    it('should add a new validator', function () {
+      assurance.extend('validator', 'startsWithNumber', function (val) {
+        if (Number.isNaN(parseInt(val[0], 10))) {
+          return { message: 'doesnt start with a number' }
+        }
+      })
+
+      var assure = assurance({
+        works: '1abc',
+        fails: 'abc'
+      })
+
+      assure.me('works').startsWithNumber().end().should.have.length(0)
+      
+      var errors = assure.me('fails').startsWithNumber().end()
+
+      errors.should.have.length(1)
+      should.deepEqual(errors[0], {
+        message: 'doesnt start with a number',
+        param:   'fails'
+      })
+    })
+
+    it('should add a new sanitizer', function () {
+      assurance.extend('sanitizer', 'toUpperCase', function (val) {
+        return val.toUpperCase()
+      })
+
+      var o = {
+        string: 'lowercase'
+      }
+
+      var assure = assurance(o)
+
+      assure.me('string').toUpperCase()
+      should.deepEqual(o, {
+        string: 'LOWERCASE'
+      })
+    })
+
+    it('should fill the name by itself', function () {
+      assurance.extend('sanitizer', function newSanitizer() {})
+      assurance({}).check('field').newSanitizer.should.be.a('function')
+    })
+
+    it('should throw if it doesnt understand the type', function () {
+      (function () {
+        assurance.extend('MEW')
+      }).should.throw()
+    })
+  })
 
   it('consists', function () {
     var o = {

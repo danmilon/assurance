@@ -254,6 +254,28 @@ assurance({ name: 'dan' }).check('name').is('string').custom(function (name, err
 //     param: 'name' } ]
 ```
 
+## extend(type, [name], fn)
+
+Adds a new validator or sanitizer.
+
+* `type`: `validator` or `sanitizer`
+* `name`: name of the new method (ie `assure.me('field')._name_(...)`)
+* `fn`:   validator or sanitizer function
+
+If `name` is omitted, then the name of the function will be used.
+
+`fn` is first passed the value of the field currently being validated, and then
+the rest of the arguments passed when the method was invoked.
+
+* If `fn` is a validator, in case of error, it must return an object.
+* If `fn` is a sanitizer, should return the new value, if needed.
+
+```javascript
+assurance.extend('sanitizer', function toUpperCase(val) {
+  return val.toUpperCase()
+})
+```
+
 ## Validators
 
     .is(type)            typeof val === type (extra type 'array')

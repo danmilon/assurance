@@ -1,4 +1,5 @@
 ## Assurance - We've got you covered!
+[![build status](https://secure.travis-ci.org/danmilon/assurance.png)](http://travis-ci.org/danmilon/assurance)
 
 
 _Assurance_ is a validation library, which:

@@ -306,5 +306,11 @@ assurance.extend('sanitizer', function toUpperCase(val) {
     npm test
     make test
 
+## TODO
+
+* browser support
+* moar validators & sanitizers
+* human readable messages
+
 [single assurance instance]: https://github.com/danmilon/assurance/tree/master/lib/singleton.js
 [Assurance object]: https://github.com/danmilon/assurance/blob/master/lib/Assurance.js

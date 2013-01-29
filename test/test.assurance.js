@@ -300,45 +300,4 @@ describe('Assurance', function () {
       }).should.throw()
     })
   })
-
-  it('consists', function () {
-    var o = {
-      val: 'at_sign_@_not_allowed',
-      other: 'abcjodsaogpowsnpoewanf'
-    }
-
-    assurance.single(o, 'val').consistsOf('abcdefghijklmnopqrstuvwxyz').end().should.have.length(1)
-    assurance.single(o, 'other').consistsOf('abcdefghijklmnopqrstuvwxyz').end().should.have.length(0)
-  })
-
-  it('gt', function () {
-    var o = {
-      fifty: 50,
-      irrelevant: 'ffafa'
-    }
-
-    assurance.single(o, 'fifty').gt(40).end().should.have.length(0)
-    assurance.single(o, 'fifty').gt(50).end().should.have.length(1)
-    assurance.single(o, 'irrelevant').gt(50).end().should.have.length(1)
-  })
-
-  it('lt', function () {
-    var o = {
-      fifty: 50,
-      irrelevant: 'ffafa'
-    }
-
-    assurance.single(o, 'fifty').lt(60).end().should.have.length(0)
-    assurance.single(o, 'fifty').lt(50).end().should.have.length(1)
-    assurance.single(o, 'irrelevant').lt(50).end().should.have.length(1)
-  })
-
-  it('max', function () {
-    var o = { fifty: 50 }
-
-    assurance.single(o, 'fifty').max(50).end().should.have.length(0)
-    assurance.single(o, 'fifty').max(40).end().should.have.length(1)
-    assurance.single(o, 'irrelevant').max(50).end().should.have.length(1)
-  })
-
 })

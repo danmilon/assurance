@@ -251,7 +251,7 @@ describe('Assurance', function () {
   describe('#extend', function () {
     it('should add a new validator', function () {
       assurance.extend('validator', 'startsWithNumber', function (val) {
-        if (Number.isNaN(parseInt(val[0], 10))) {
+        if (isNaN(parseInt(val[0], 10))) {
           return { message: 'doesnt start with a number' }
         }
       })

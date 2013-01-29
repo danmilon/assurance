@@ -311,21 +311,6 @@ describe('Assurance', function () {
     assurance.single(o, 'other').consistsOf('abcdefghijklmnopqrstuvwxyz').end().should.have.length(0)
   })
 
-  it('isPositive', function () {
-    var o = {
-      positive: 5,
-      negative: -5,
-      zero: 0,
-      irrelevant: 'fagdsa'
-    }
-
-    assurance.single(o, 'positive').isPositive().end().should.have.length(0)
-    assurance.single(o, 'negative').isPositive().end().should.have.length(1)
-    assurance.single(o, 'zero').isPositive().end().should.have.length(0)
-    assurance.single(o, 'zero').isPositive(false).end().should.have.length(1)
-    assurance.single(o, 'irrelevant').isPositive().end().should.have.length(1)
-  })
-
   it('gt', function () {
     var o = {
       fifty: 50,

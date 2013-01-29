@@ -38,7 +38,7 @@ var o = {
 var assure = assurance(o)
 
 assure.me('name').is('string').len(100)
-assure.me('age').is('number').isInt().isPositive()
+assure.me('age').is('number').isInt().gt(0)
 assure.me('adult').is('boolean')
 
 // can nest in arrays
@@ -86,7 +86,7 @@ assure.me('hobbies', function (hobby) {
 })
 
 assure.me('integer').is('number').isInt()
-assure.me('positive').is('number').isInt().isPositive()
+assure.me('positive').is('number').isInt().gt(0)
 
 console.log(assure.end())
 // [ { type: 'InvalidType',
@@ -104,7 +104,7 @@ console.log(assure.end())
 //     is: 3.14,
 //     param: 'integer' },
 //   { type: 'InvalidValue',
-//     message: 'expected a positive number',
+//     message: 'expected a value greater than 0',
 //     is: -666,
 //     param: 'positive' } ]
 ```

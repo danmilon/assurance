@@ -17,25 +17,6 @@ describe('assurance validators', function () {
     })
   })
 
-  describe('isPositive', function () {
-    it('should work for positive numbers', function () {
-      should.not.exist(validators.isPositive(10))
-      should.not.exist(validators.isPositive(0))
-    })
-
-    it('should optionally throw for zero', function () {
-      should.exist(validators.isPositive(0, false))
-    })
-
-    it('should throw elseways', function () {
-      var err = validators.isPositive(-5)
-
-      err.type.should.equal('InvalidValue')
-      err.is.should.equal(-5)
-      err.message.should.equal('expected a positive number')
-    })
-  })
-
   describe('matches', function () {
     it('should work if it matches', function () {
       should.not.exist(validators.matches('hello mister', /mister/))

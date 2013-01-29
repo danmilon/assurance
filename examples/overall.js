@@ -18,7 +18,7 @@ var o = {
 var assure = assurance(o)
 
 assure.me('name').is('string').len(100)
-assure.me('age').is('number').isInt().isPositive()
+assure.me('age').is('number').isInt().gt(0)
 assure.me('adult').is('boolean')
 
 // can nest in arrays

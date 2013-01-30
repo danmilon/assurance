@@ -242,4 +242,49 @@ describe('assurance validators', function () {
       err.message.should.equal('value must not equal 5')
     })
   })
+
+  describe('isUpperCase', function () {
+    it('should accept all-uppercase strings', function () {
+      should.not.exist(validators.isUpperCase('AB CD'))
+    })
+
+    it('should not accept strings with lowercase characters', function () {
+      var err = validators.isUpperCase('AB cd')
+
+      should.exist(err)
+      err.type.should.equal('InvalidValue')
+      err.is.should.equal('AB cd')
+      err.message.should.equal('must contain only upper case characters')
+    })
+  })
+
+  describe('isLowerCase', function () {
+    it('should accept all-lowercase strings', function () {
+      should.not.exist(validators.isLowerCase('ab cd'))
+    })
+
+    it('should not accept strings with uppercase characters', function () {
+      var err = validators.isLowerCase('AB cd')
+
+      should.exist(err)
+      err.type.should.equal('InvalidValue')
+      err.is.should.equal('AB cd')
+      err.message.should.equal('must contain only lower case characters')
+    })
+  })
+
+  describe('contains', function () {
+    it('should accept arrays which contain elem', function () {
+      should.not.exist(validators.contains(['a', 'b', 'c'], 'b'))
+    })
+
+    it('should not accept arrays which dont contain elem', function () {
+      var err = validators.contains(['a', 'b', 'c'], 'd')
+
+      should.exist(err)
+      err.type.should.equal('InvalidValue')
+      should.deepEqual(err.is, ['a', 'b', 'c'])
+      err.message.should.equal('must contain d')
+    })
+  })
 })

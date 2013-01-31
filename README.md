@@ -12,6 +12,7 @@ _Assurance_ is a validation library, which:
   * Is resource conservative
   * Doesn't use schemas
   * Doesn't throw
+  * Works in the browser
 
 ## Examples
 
@@ -107,6 +108,18 @@ console.log(assure.end())
 //     message: 'expected a value greater than 0',
 //     is: -666,
 //     param: 'positive' } ]
+```
+
+## In the browser
+
+grab [assurance.js](build/assurance.js) or [assurance.min.js](build/assurance.min.js)
+
+```html
+...
+<script src="./assurance.min.js"></script>
+<script>
+  console.log(assurance({ age: 'ff' }).check('age').is('number').end())
+</script>
 ```
 
 ## How to invoke

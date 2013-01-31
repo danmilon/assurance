@@ -29,4 +29,18 @@ describe('Assurance sanitizers', function () {
       err.is.should.equal('string')
     })
   })
+
+  describe('toLowerCase', function () {
+    it('should convert a string to lower case', function () {
+      sanitizers.toLowerCase('abc').should.equal('abc')
+      sanitizers.toLowerCase('ABC').should.equal('abc')
+    })
+  })
+
+  describe('toUpperCase', function () {
+    it('should convert a string to upper case', function () {
+      sanitizers.toUpperCase('abc').should.equal('ABC')
+      sanitizers.toUpperCase('ABC').should.equal('ABC')
+    })
+  })
 })

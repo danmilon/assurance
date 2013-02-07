@@ -1,6 +1,10 @@
 
 # Changelog
 
+## v0.2.2 (07 Feb 2012)
+
+* [8345af7][] component-ify
+
 ## v0.2.1 (31 Jan 2012)
 
 * [4cd05d0][] embed util.inherits in code
@@ -18,3 +22,4 @@
 [4cd05d0]: https://github.com/danmilon/assurance/commit/4cd05d0
 [d8d563c]: https://github.com/danmilon/assurance/commit/d8d563c
 [28a65a5]: https://github.com/danmilon/assurance/commit/28a65a5
+[8345af7]: https://github.com/danmilon/assurance/commit/8345af7

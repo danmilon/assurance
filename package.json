@@ -1,6 +1,6 @@
 {
   "name": "assurance",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Node validation/sanitization library with a handsome API",
   "main": "lib/index.js",
   "scripts": {

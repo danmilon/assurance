@@ -2,7 +2,7 @@
   "name": "assurance",
   "repo": "danmilon/assurance",
   "description": "validation & sanitization library with a handsome API",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "keywords": [
     "validation",
     "sanitization",

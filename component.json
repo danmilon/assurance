@@ -1,0 +1,25 @@
+{
+  "name": "assurance",
+  "repo": "danmilon/assurance",
+  "description": "validation & sanitization library with a handsome API",
+  "version": "0.2.1",
+  "keywords": [
+    "validation",
+    "sanitization",
+    "assurance",
+    "ensure",
+    "validate"
+  ],
+  "main": "lib/index.js",
+  "scripts": [
+    "lib/index.js",
+    "lib/Assurance.js",
+    "lib/AssuranceGroup.js",
+    "lib/errors.js",
+    "lib/sanitizers.js",
+    "lib/singleton.js",
+    "lib/validators.js"
+  ],
+  "dependencies": {},
+  "license": "MIT"
+}

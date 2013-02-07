@@ -14,6 +14,23 @@ _Assurance_ is a validation library, which:
   * Doesn't throw
   * Works in the browser
 
+## Install
+
+Node
+
+```
+npm install assurance
+```
+
+Or in the browser
+
+```
+component install danmilon/assurance
+```
+
+Also available as standalone scripts [assurance.js](build/assurance.js)
+or [assurance.min.js](build/assurance.min.js) (global var `assurance`)
+
 ## Examples
 
 When things go right.
@@ -110,17 +127,6 @@ console.log(assure.end())
 //     param: 'positive' } ]
 ```
 
-## In the browser
-
-grab [assurance.js](build/assurance.js) or [assurance.min.js](build/assurance.min.js)
-
-```html
-...
-<script src="./assurance.min.js"></script>
-<script>
-  console.log(assurance({ age: 'ff' }).check('age').is('number').end())
-</script>
-```
 
 ## How to invoke
 

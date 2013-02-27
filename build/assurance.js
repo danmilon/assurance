@@ -207,6 +207,63 @@ require.relative = function(parent) {
 
   return localRequire;
 };
+require.register("danmilon-object.keys-shim/index.js", function(exports, require, module){
+// grabbed from https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys
+if (!Object.keys) {
+  Object.keys = (function () {
+    var has            = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString')
+
+    var dontEnums = [
+        'toString',
+        'toLocaleString',
+        'valueOf',
+        'hasOwnProperty',
+        'isPrototypeOf',
+        'propertyIsEnumerable',
+        'constructor'
+      ]
+
+    var dontEnumsLength = dontEnums.length;
+ 
+    return function (obj) {
+      if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) {
+        throw new TypeError('Object.keys called on non-object');
+      }
+ 
+      var result = [];
+ 
+      for (var prop in obj) {
+        if (has.call(obj, prop)) {
+          result.push(prop);
+        }
+      }
+ 
+      if (hasDontEnumBug) {
+        for (var i = 0; i < dontEnumsLength; i++) {
+          if (has.call(obj, dontEnums[i])) {
+            result.push(dontEnums[i]);
+          }
+        }
+      }
+      return result;
+    }
+  })()
+}
+
+module.exports = Object.keys
+
+});
+require.register("assurance/lib/shims.js", function(exports, require, module){
+// if we run in the browser, load some shims
+// if not, supress the error and move on
+try {
+  require('object.keys-shim')
+} catch (ex) {
+  
+}
+
+});
 require.register("assurance/lib/index.js", function(exports, require, module){
 var Assurance      = require('./Assurance')
   , errors         = require('./errors')
@@ -215,6 +272,8 @@ var Assurance      = require('./Assurance')
   , validators     = require('./validators')
   , sanitizers     = require('./sanitizers')
 
+// just for the browser
+require('./shims')
 
 module.exports = singleton
 
@@ -232,7 +291,6 @@ module.exports.single = function (object, key, alias) {
 module.exports.group = function () {
   return new AssuranceGroup()
 }
-
 
 });
 require.register("assurance/lib/Assurance.js", function(exports, require, module){
@@ -1049,6 +1107,10 @@ exports.contains = function (val, elem) {
 }
 
 });
+require.alias("danmilon-object.keys-shim/index.js", "assurance/deps/object.keys-shim/index.js");
+require.alias("danmilon-object.keys-shim/index.js", "assurance/deps/object.keys-shim/index.js");
+require.alias("danmilon-object.keys-shim/index.js", "danmilon-object.keys-shim/index.js");
+
 require.alias("assurance/lib/index.js", "assurance/index.js");
 
 if (typeof exports == "object") {

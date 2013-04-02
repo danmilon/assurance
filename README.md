@@ -306,7 +306,7 @@ assurance.extend('sanitizer', function toUpperCase(val) {
     .equals(other)       val === other
     .notEquals(other)    val !== other
     .required()          val !== undefined && val !== null
-    .oneOf(array)        val exists in array
+    .oneOf(index)        val exists in index
     .isEmail()           val has an email format
     .isInt()             val is an integral number
     .matches(regex)      val matches regex
@@ -319,6 +319,28 @@ assurance.extend('sanitizer', function toUpperCase(val) {
     .toInt()    number & string to integers
     .toFloar()  string to float
     .trim()     trims whitespace from left & right
+
+## Indexes (array/object lookup)
+
+A few methods accept an index (`oneOf`, `consistsOf`, etc). This can be either
+an array, or an object and what you use has performance impacts. For example, if
+you'd like to check whether a string is one of many many strings, then an array
+is a bad option O(n). Instead you can use an object (hash) as an index, which has O(1)
+lookup. Obviously this makes sense for lookups amongst more than a couple thousand elements.
+
+```javascript
+var array = ['option1', 'option2']
+
+var object = {
+  option1: 1,
+  option2: 1
+}
+
+var assure = assurance({ str: 'option3' })
+
+assure.me('str').oneOf(array) // O(n)
+assure.me('str').oneOf(object) // O(1)
+```
 
 ## Tests
 

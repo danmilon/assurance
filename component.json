@@ -22,7 +22,8 @@
     "lib/validators.js"
   ],
   "dependencies": {
-    "danmilon/object.keys-shim": "*"
+    "danmilon/object.keys-shim": "*",
+    "yields/isarray": "*"
   },
   "license": "MIT"
 }

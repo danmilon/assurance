@@ -254,17 +254,57 @@ if (!Object.keys) {
 module.exports = Object.keys
 
 });
+require.register("yields-isarray/index.js", function(exports, require, module){
+
+/**
+ * isArray
+ */
+
+var isArray = Array.isArray;
+
+/**
+ * toString
+ */
+
+var str = Object.prototype.toString;
+
+/**
+ * Whether or not the given `val`
+ * is an array.
+ *
+ * example:
+ *
+ *        isArray([]);
+ *        // > true
+ *        isArray(arguments);
+ *        // > false
+ *        isArray('');
+ *        // > false
+ *
+ * @param {mixed} val
+ * @return {bool}
+ */
+
+module.exports = isArray || function (val) {
+  return !! val && '[object Array]' == str.call(val);
+};
+
+});
 require.register("assurance/lib/shims.js", function(exports, require, module){
 // if we run in the browser, load some shims
 // if not, supress the error and move on
 try {
   require('object.keys-shim')
+  Array.isArray = Array.isArray || require('isarray')
 } catch (ex) {
   
 }
 
 });
 require.register("assurance/lib/index.js", function(exports, require, module){
+// just for the browser
+require('./shims')
+
 var Assurance      = require('./Assurance')
   , errors         = require('./errors')
   , AssuranceGroup = require('./AssuranceGroup')
@@ -272,8 +312,6 @@ var Assurance      = require('./Assurance')
   , validators     = require('./validators')
   , sanitizers     = require('./sanitizers')
 
-// just for the browser
-require('./shims')
 
 module.exports = singleton
 
@@ -993,9 +1031,16 @@ exports.isEmail = function (val) {
   }
 }
 
-exports.oneOf = function (val, arr) {
-  if (arr.indexOf(val) === -1) {
-    return new errors.NotAnOption(val, arr)
+exports.oneOf = function (val, index) {
+  if (Array.isArray(index)) {
+    if (index.indexOf(val) === -1) {
+      return new errors.NotAnOption(val, index)
+    }
+  }
+  else {
+    if (!index[val]) {
+      return new errors.NotAnOption(val, Object.keys(index))
+    }
   }
 }
 
@@ -1110,6 +1155,8 @@ exports.contains = function (val, elem) {
 require.alias("danmilon-object.keys-shim/index.js", "assurance/deps/object.keys-shim/index.js");
 require.alias("danmilon-object.keys-shim/index.js", "assurance/deps/object.keys-shim/index.js");
 require.alias("danmilon-object.keys-shim/index.js", "danmilon-object.keys-shim/index.js");
+
+require.alias("yields-isarray/index.js", "assurance/deps/isArray/index.js");
 
 require.alias("assurance/lib/index.js", "assurance/index.js");
 

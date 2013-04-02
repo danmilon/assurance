@@ -183,6 +183,17 @@ describe('assurance validators', function () {
       should.not.exist(validators.oneOf('a', ['a', 'b', 'c']))
     })
 
+    it('should accept an index(object) instead of an array', function () {
+      var index = { a: 1, c: 1 }
+
+      should.not.exist(validators.oneOf('a', index))
+
+      var err = validators.oneOf('b', index)
+
+      should.exist(err)
+      should.deepEqual(err.expected, ['a', 'c'])
+    })
+
     it('should not accept a value not included in the array', function () {
       var expected = ['a', 'b', 'c']
         , err      = validators.oneOf('d', expected)

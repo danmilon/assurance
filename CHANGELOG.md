@@ -1,6 +1,11 @@
 
 # Changelog
 
+## v0.2.4 (02 Apr 2013)
+
+* [5e76fc4][] add object index capabilities to .oneOf
+* [449217d][] shim Array.isArray for browsers
+
 ## v0.2.2 (07 Feb 2012)
 
 * [8345af7][] component-ify
@@ -23,3 +28,5 @@
 [d8d563c]: https://github.com/danmilon/assurance/commit/d8d563c
 [28a65a5]: https://github.com/danmilon/assurance/commit/28a65a5
 [8345af7]: https://github.com/danmilon/assurance/commit/8345af7
+[5e76fc4]: https://github.com/danmilon/assurance/commit/5e76fc4
+[449217d]: https://github.com/danmilon/assurance/commit/449217d

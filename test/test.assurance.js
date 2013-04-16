@@ -82,13 +82,17 @@ describe('Assurance', function () {
     })
 
     it('should respect onlyFields', function () {
-      var assure = assurance(person, ['age'])
+      var assure = assurance(person, ['age', 'schedule'])
 
       assure.me('name').is('number')
       assure.me('adult').is('string')
       assure.me('age').is('string')
 
-      assure.end().should.have.length(1)
+      assure.me('schedule', function () {
+        assure.me('monday').is('number') // this should error
+      })
+
+      assure.end().should.have.length(2)
     })
 
     it('should be able to nest', testNest)
